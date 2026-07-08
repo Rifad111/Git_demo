@@ -13,9 +13,9 @@ import pandas as pd
 import matplotlib.pyplot as plt
 import seaborn as sns
 
-# ---------------------------------------------------------
+
 # 1. CONFIG
-# ---------------------------------------------------------
+
 DATA_PATH = "data/covid_19.csv"
 OUTPUT_DIR = "visuals"
 
@@ -27,9 +27,9 @@ sns.set_theme(style="darkgrid")
 plt.rcParams["figure.dpi"] = 120
 
 
-# ---------------------------------------------------------
+
 # 2. LOAD & CLEAN DATA
-# ---------------------------------------------------------
+
 def load_data(path: str) -> pd.DataFrame:
     """Load the raw CSV and apply basic cleaning."""
     df = pd.read_csv(path, parse_dates=["date"])
@@ -58,9 +58,9 @@ def get_latest_snapshot(df: pd.DataFrame) -> pd.DataFrame:
     return df.sort_values("date").groupby("location").tail(1)
 
 
-# ---------------------------------------------------------
+
 # 3. VISUALIZATIONS
-# ---------------------------------------------------------
+
 def plot_case_trend(df: pd.DataFrame, countries: list, out_path: str):
     """Line chart: total confirmed cases over time for selected countries."""
     subset = df[df["location"].isin(countries)]
@@ -123,9 +123,9 @@ def plot_bangladesh_vaccination(df: pd.DataFrame, out_path: str):
     plt.close()
 
 
-# ---------------------------------------------------------
+
 # 4. MAIN
-# ---------------------------------------------------------
+
 def main():
     df = load_data(DATA_PATH)
     latest = get_latest_snapshot(df)
